@@ -1,0 +1,75 @@
+/* ─────────────────────────────────────────────────────────────
+   base.css  —  Reset · Variables · Body · Keyframes
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ── Design tokens ── */
+:root {
+  --bg:           #1c1f23;
+  --bg-overlay:   #1c1f23;
+  --text:         #d8dfe8;
+  --text-dim:     rgba(255, 255, 255, 0.36);
+  --text-muted:   rgba(255, 255, 255, 0.22);
+  --accent:       #00c8f0;
+  --accent-rgb:   0, 200, 240;
+  --violet:       #a5b4fc;
+  --teal:         #34d399;
+  --amber:        #f59e0b;
+  --border-faint: rgba(255, 255, 255, 0.045);
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+  --font-mono:    'Roboto Mono', monospace;
+}
+
+/* ── Body ── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes scrollln {
+  0%, 100% { transform: scaleY(1);   opacity: 0.45; }
+  50%       { transform: scaleY(0.5); opacity: 0.12; }
+}
+
+@keyframes flowDash {
+  to { stroke-dashoffset: -22; }
+}
+
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.8; }
+  50%       { opacity: 1; }
+}
+
+/* ── SVG animation utility classes ── */
+.fl   { stroke-dasharray: 7 5; animation: flowDash 1.9s linear infinite; }
+.fl-s { animation-duration: 2.9s; }
+.fl-f { animation-duration: 1.3s; }
+.nd   { animation: nodePulse 3.2s ease-in-out infinite; }
