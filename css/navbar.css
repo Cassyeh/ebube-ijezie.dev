@@ -63,7 +63,7 @@ body.ch #cur-ring { width: 40px; height: 40px; border-color: rgba(255, 255, 255,
 
 .nav-logo-text span:first-child {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: .18em;
   color: var(--accent);
@@ -72,7 +72,7 @@ body.ch #cur-ring { width: 40px; height: 40px; border-color: rgba(255, 255, 255,
 
 .nav-logo-text span:last-child {
   font-family: var(--font-mono);
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.22);
   letter-spacing: .05em;
