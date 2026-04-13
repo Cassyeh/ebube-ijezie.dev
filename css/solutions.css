@@ -1,0 +1,394 @@
+/* ─────────────────────────────────────────────────────────────
+   solutions.css  —  Solutions / Projects section
+   Inspired by nainibansal.com — large full-bleed cards,
+   category tag, big headline, outcome metrics, CTA link.
+   No raw code. Work speaks for itself.
+   ───────────────────────────────────────────────────────────── */
+
+#solutions {
+  position: relative;
+  padding: 2rem 3vw 4rem;
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ── Label + heading ── */
+.sol-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.45);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sol-label::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: rgba(var(--accent-rgb), 0.35);
+}
+
+.sol-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.sol-heading span {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Project card ── */
+.sol-card {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem 3rem;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sol-card:hover {
+  transform: scale(1.005);
+}
+
+/* Dark overlay so text reads over any background */
+.sol-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.55) 45%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 1;
+}
+
+/* Background colour per card — each project has its own colour identity */
+.sol-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sol-card:hover .sol-card-bg {
+  transform: scale(1.03);
+}
+
+/* Card colour themes */
+.sol-card.theme-cyan .sol-card-bg {
+  background-color: #041e2e;
+}
+.sol-card.theme-violet .sol-card-bg {
+  background-color: #0e0d1f;
+}
+.sol-card.theme-amber .sol-card-bg {
+  background-color: #1a1200;
+}
+.sol-card.theme-green .sol-card-bg {
+  background-color: #041a0e;
+}
+.sol-card.theme-red .sol-card-bg {
+  background-color: #1a0404;
+}
+
+/* Noise grain texture overlay — adds depth */
+.sol-card.theme-cyan::after,
+.sol-card.theme-violet::after,
+.sol-card.theme-amber::after,
+.sol-card.theme-green::after,
+.sol-card.theme-red::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Accent glow blobs per theme */
+.sol-card.theme-cyan .sol-card-bg::after {
+  background: radial-gradient(
+    ellipse 60% 60% at 80% 30%,
+    rgba(0, 200, 240, 0.12) 0%,
+    transparent 70%
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.sol-card.theme-violet .sol-card-bg::after {
+  background: radial-gradient(
+    ellipse 60% 60% at 20% 70%,
+    rgba(99, 102, 241, 0.14) 0%,
+    transparent 70%
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.sol-card.theme-amber .sol-card-bg::after {
+  background: radial-gradient(
+    ellipse 60% 60% at 75% 40%,
+    rgba(245, 158, 11, 0.12) 0%,
+    transparent 70%
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.sol-card.theme-green .sol-card-bg::after {
+  background: radial-gradient(
+    ellipse 60% 60% at 30% 60%,
+    rgba(16, 185, 129, 0.12) 0%,
+    transparent 70%
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.sol-card.theme-red .sol-card-bg::after {
+  background: radial-gradient(
+    ellipse 60% 60% at 70% 30%,
+    rgba(239, 68, 68, 0.12) 0%,
+    transparent 70%
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* ── Card content (sits above overlays) ── */
+.sol-card-content {
+  position: relative;
+  margin-top: 1.5rem;
+  z-index: 2;
+}
+
+/* Category tag — top left */
+.sol-card-top {
+  position: absolute;
+  top: 2.5rem;
+  left: 3rem;
+  right: 3rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sol-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.sol-status {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.sol-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 6px var(--teal);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.sol-status-dot.static {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  animation: none;
+}
+
+/* Big headline */
+.sol-card-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+  max-width: 680px;
+  margin-bottom: 1.5rem;
+}
+
+/* Metrics row */
+.sol-metrics {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.sol-metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.sol-metric-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.sol-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  max-width: 140px;
+  line-height: 1.4;
+}
+
+/* Bottom row — project name + CTA */
+.sol-card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sol-project-name {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.sol-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: none;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
+  backdrop-filter: blur(8px);
+}
+
+.sol-cta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.sol-cta svg {
+  transition: transform 0.25s;
+}
+.sol-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── Two-card row layout (side by side) ── */
+.sol-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.sol-row .sol-card {
+  min-height: 360px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .sol-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sol-row .sol-card {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  #solutions {
+    padding: 3.5rem 5vw 3rem;
+  }
+  .sol-heading {
+    margin-bottom: 1rem;
+  }
+  .sol-card {
+    padding: 1.5rem;
+    min-height: 328px;
+  }
+  .sol-card-top {
+    left: 1.5rem;
+    right: 1.5rem;
+    top: 1.5rem;
+  }
+  .sol-metrics {
+    gap: 1.5rem;
+  }
+  .sol-card-headline {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+  }
+  .sol-card-content {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sol-card {
+    padding: 1.25rem;
+    min-height: 308px;
+  }
+  .sol-card-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sol-card-content {
+    margin-top: 0;
+  }
+}
